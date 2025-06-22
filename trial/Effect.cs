@@ -1,13 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Formats.Asn1.AsnWriter;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace trial
 {
@@ -17,15 +10,15 @@ namespace trial
         public string Description { get; set; }
         public byte Type { get; set; }
 
-        public void Split(int index, List<Enemy> enemies)
+        public List<Enemy> Split(int index, List<Enemy> enemies)
         {
             if (enemies[index].MaxHealth < 4)
             {
-                return; // Cannot split if health is too low
+                return enemies; // Cannot split if health is too low
             }
             Enemy enemy = enemies[index];
             enemy.ID = enemy.ID + "_split_";
-            enemy.Level = (int)Math.Round((decimal)(enemy.Level/4));
+            enemy.Level = (int)Math.Round((decimal)(enemy.Level / 4));
             enemy.MaxHealth = (int)Math.Round((decimal)(enemy.MaxHealth / 4));
             enemy.Health = enemy.MaxHealth;
             enemy.Speed = enemy.Speed / 2;
@@ -38,6 +31,25 @@ namespace trial
             {
                 pos.X += 3;
                 enemies.Add(new Enemy(pos, enemy.Texture, enemy.ID + i.ToString(), enemy.Level, enemy.MaxHealth, enemy.Speed, enemy.AppliedModifiers, enemy.Damage, enemy.scale));
+            }
+            return enemies;
+        }
+        public void Explode(int index, List<Enemy> enemies)
+        {
+            // Implement explosion logic here
+            // Create projectile object with 2pi spread and radius of 5
+            // Damage is different based on entity type so should create 2 different projectiles
+        }
+        public List<Enemy> Pull(int index, List<Enemy> enemies)
+        {
+            Vector2 pullPosition = enemies[index].Position;
+            foreach (Enemy enemy in enemies)
+            {
+                if (Vector2.Distance(enemy.Position, pullPosition) < 5f && enemy != enemies[index])
+                {
+                    //while (pullPosition) // Keep pulling until the enemy is at the pull position (add logic to pull at set speed)
+                    //enemy.Position = pullPosition; // Pull the enemy to the centre of the pull
+                }
             }
         }
     }

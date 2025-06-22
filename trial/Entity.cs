@@ -1,21 +1,30 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace trial
 {
     public class Entity
     {
-        public string ID { get; set; } // Unique identifier for the entity - Overridden in case of player.
+        public Vector2 Position { get; set; }
+        public Texture2D Texture { get; set; }
+        public float scale { get; set; } // Scale of the entity, used for rendering
+        public string ID { get; set; } // Unique identifier for the entity - name in case of player.
         public int Level { get; set; } // Level of the entity, used for scaling difficulty
 
         public int MaxHealth { get; set; } // Maximum health of the entity
         public double Health { get; set; } // Current health of the entity
-        public int Damage { get; set; } // Default damage of the entity
         public double Speed { get; set; } // Speed the entity moves at
 
+        public List<Modifier> AppliedModifiers; //The effects that the entity is currently experiencing
+        private bool isAlive {  get; set; }
+
+        public void Draw() { }
+        public void Remove() { }
         public void TakeDamage(double damageAmount) // Method to apply damage to the entity
         {
             Health -= damageAmount;

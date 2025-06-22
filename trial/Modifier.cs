@@ -2,14 +2,14 @@
 
 namespace trial
 {
-    public interface Modifier
+    public class Modifier
     {
-        string Name { get; }
-        string Description { get; } // Description of the modifier
-        byte EffectedAttribute { get; } // Value of the modifier, e.g., damage increase, health regeneration rate, etc.
-        string Value { get; } // The value of the modifier, e.g., +10% damage, +5 health per second, etc.
-        double Duration { get; set; } // Duration of the modifier in seconds, 0 for permanent modifiers
-        bool IsActive { get; set; } // Indicates if the modifier is currently active
+        private string Name { get; }
+        private string Description { get; } // Description of the modifier
+        private byte EffectedAttribute { get; } // Value of the modifier, e.g., damage increase, health regeneration rate, etc.
+        private string Value { get; } // The value of the modifier, e.g., +10% damage, +5 health per second, etc.
+        private double Duration { get; set; } // Duration of the modifier in seconds, 0 for permanent modifiers
+        private bool IsActive { get; set; } // Indicates if the modifier is currently active
 
 
         // VVV Untested methods VVV
@@ -19,8 +19,7 @@ namespace trial
             Dictionary<byte, object> Properties = new Dictionary<byte, object>()
             {
                 { 0, entity.Health },
-                { 1, entity.Damage },
-                { 2, entity.Speed }
+                { 1, entity.Speed }
             };
             Properties[EffectedAttribute] = ConvertValue(entity, (double)Properties[EffectedAttribute], false);
             return entity;
@@ -49,14 +48,12 @@ namespace trial
             if (invert) { change = 0 - change; }
             return effectedStat + change;
         }
-
         Entity Remove(Entity entity) // Method to remove the modifier from an entity
         {
             Dictionary<byte, object> Properties = new Dictionary<byte, object>()
             {
                 { 0, entity.Health },
-                { 1, entity.Damage },
-                { 2, entity.Speed }
+                { 1, entity.Speed }
             };
             Properties[EffectedAttribute] = ConvertValue(entity, (double)Properties[EffectedAttribute], true);
             return entity;

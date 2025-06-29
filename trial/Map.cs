@@ -178,11 +178,11 @@ namespace trial
                 for (int y = 0; y < MapSize / 2; y++)
                 {
                     // Classify the heightmap values into different terrain types
-                    if (heightmap[x, y] < 0.15)
+                    if (heightmap[x, y] < 0.2)
                     {
                         WorldMap[x, y] = 0; // Water
                     }
-                    else if (heightmap[x, y] > 0.85)
+                    else if (heightmap[x, y] > 0.8)
                     {
                         WorldMap[x, y] = 2; // Mountain
                     }

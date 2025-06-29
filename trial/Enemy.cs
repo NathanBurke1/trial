@@ -12,7 +12,7 @@ namespace trial
     {
         public double Damage { get; set; } // Damage the enemy deals
 
-        public Enemy(Vector2 position, Texture2D texture, string id, int level, int maxHealth, double speed, List<Modifier> appliedModifiers, double damage, float scale)
+        public Enemy(Vector2 position, Texture2D texture, string id, int level, int maxHealth, float speed, List<Modifier> appliedModifiers, double damage, float scale)
         {
             Position = position;
             Texture = texture;
@@ -25,7 +25,7 @@ namespace trial
             Damage = damage;
             scale = scale; // Default scale for the enemy
         }
-        public Enemy(Vector2 position, Texture2D texture, string id, int level, int maxHealth, double speed,double damage)
+        public Enemy(Vector2 position, Texture2D texture, string id, int level, int maxHealth, float speed,double damage)
         {
             Position = position;
             Texture = texture;

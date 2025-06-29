@@ -7,7 +7,6 @@ namespace trial
     public enum GameState
     {
         MainMenu,
-        AdminMenu,
         PlayingMenu,
         Playing
     }
@@ -17,7 +16,6 @@ namespace trial
         public int ScreenWidth;// Default screen width
         public int ScreenHeight; // Default screen height
         public bool Fullscreen; // Default fullscreen mode
-        public bool AdminMode; // Set to true for access to admin features
         public float Scale; // Scale factor for the game, used for rendering
         public int MapSize; // Default map size
         public int NumOctaves; // Number of octaves for noise generation
@@ -33,7 +31,6 @@ namespace trial
             NumOctaves = numOctaves;
             Persistence = persistence;
             Lacunarity = lacunarity;
-            AdminMode = false; // Default to false, can be set to true for admin features
         }
     }
 
@@ -61,9 +58,15 @@ namespace trial
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = false;
+            
 
-            MainSetup = new GameSettings(800, 600, false, 2.0f, 512, 32, 0.5, 2);
+            MainSetup = new GameSettings(900, 600, false, 4f, 1024, 8, 0.5, 2);
             World1 = new WorldHeightmapGenerator(MainSetup);
+
+            _graphics.PreferredBackBufferWidth = MainSetup.ScreenWidth;
+            _graphics.PreferredBackBufferHeight = MainSetup.ScreenHeight;
+            _graphics.IsFullScreen = MainSetup.Fullscreen;
+            _graphics.ApplyChanges();
         }
     }
 }

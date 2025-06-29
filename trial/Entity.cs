@@ -18,7 +18,7 @@ namespace trial
 
         public int MaxHealth { get; set; } // Maximum health of the entity
         public double Health { get; set; } // Current health of the entity
-        public double Speed { get; set; } // Speed the entity moves at
+        public float Speed { get; set; } // Speed the entity moves at
 
         public List<Modifier> AppliedModifiers; //The effects that the entity is currently experiencing
         private bool isAlive {  get; set; }

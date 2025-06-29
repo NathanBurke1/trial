@@ -11,7 +11,7 @@ namespace trial
         private double ManaRate { get; set; } // Rate at which mana regenerates per second
         public int Experience { get; set; } // Experience points of the player
 
-        public Player(Vector2 position, Texture2D texture, string id, int level, int maxHealth, double health, double speed, List<Modifier> appliedModifiers, int maxMana, double mana,double manaRate, int experience)
+        public Player(Vector2 position, Texture2D texture, string id, int level, int maxHealth, double health, float speed, List<Modifier> appliedModifiers, int maxMana, double mana,double manaRate, int experience)
         {
             Position = position;
             Texture = texture;
@@ -27,13 +27,13 @@ namespace trial
             Experience = experience;
             scale = 1; // Default scale
         }
-        public Player(string name)
+        public Player()
         {
-            ID = name;
+            ID = "";
             Level = 1; // Default level
             MaxHealth = 10; // Default maximum health
             Health = MaxHealth; // Start with full health
-            Speed = 2.0; // Default speed
+            Speed = 0.1f; // Default speed
             Position = new Vector2(0, 0); // Starting position
             MaxMana = 10; // Default maximum mana
             Mana = MaxMana; // Start with full mana

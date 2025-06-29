@@ -51,6 +51,7 @@ namespace trial
                     //enemy.Position = pullPosition; // Pull the enemy to the centre of the pull
                 }
             }
+            return null; // Return null for now, as the pull logic is not fully implemented
         }
     }
 }
